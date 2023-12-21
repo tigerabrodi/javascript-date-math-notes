@@ -56,6 +56,14 @@ const date2 = new Date(2023, 1, 1);
 const differenceInMilliseconds = date2 - date1;
 ```
 
+**Difference in Seconds**
+```javascript
+const date1 = new Date(2023, 0, 1);
+const date2 = new Date(2023, 1, 1);
+const differenceInMilliseconds = date2 - date1;
+const differenceInSeconds = differenceInMilliseconds / MILLISECONDS_PER_SECOND;
+```
+
 **Difference in Days**
 ```javascript
 const differenceInDays = Math.ceil(differenceInMilliseconds / (MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY));
@@ -66,6 +74,26 @@ const differenceInDays = Math.ceil(differenceInMilliseconds / (MILLISECONDS_PER_
 const years = date2.getFullYear() - date1.getFullYear();
 const months = date2.getMonth() - date1.getMonth();
 const days = date2.getDate() - date1.getDate();
+```
+
+# Explanation of the Constant Calculation
+
+The expression `MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY` is used to calculate the total number of milliseconds in a day. Here's the breakdown:
+
+- **MILLISECONDS_PER_SECOND**: There are 1000 milliseconds in a second.
+- **SECONDS_PER_MINUTE**: There are 60 seconds in a minute.
+- **MINUTES_PER_HOUR**: There are 60 minutes in an hour.
+- **HOURS_PER_DAY**: There are 24 hours in a day.
+
+So, when you multiply these values together:
+
+- First, `SECONDS_PER_MINUTE * MINUTES_PER_HOUR` calculates the number of seconds in an hour (60 seconds/minute * 60 minutes/hour = 3600 seconds/hour).
+- Next, multiplying by `HOURS_PER_DAY` gives the total number of seconds in a day (3600 seconds/hour * 24 hours/day = 86400 seconds/day).
+- Finally, multiplying by `MILLISECONDS_PER_SECOND` converts this to milliseconds (86400 seconds/day * 1000 milliseconds/second).
+
+**Complete Calculation:**
+```javascript
+const MILLISECONDS_PER_DAY = MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY; // 86400000
 ```
 
 # Using Math
